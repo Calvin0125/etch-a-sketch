@@ -3,6 +3,9 @@
     grid-template-columns: repeat(16, 1fr);
     grid-auto-rows: 1fr;
 }
+/* This adds an invisible element with equal height and width, because
+padding-bottom is calculated as a function of the parent element's width.*/
+
 #grid-container::before {
     content: '';
     width: 0;
@@ -10,7 +13,8 @@
     grid-row: 1/1;
     grid-column: 1/1;
 }
-#grid-container > *:first-child {
+/* This moves the first child back to the first square. */
+#grid-container :first-child {
     grid-row: 1/1;
     grid-column: 1/1;
 }
