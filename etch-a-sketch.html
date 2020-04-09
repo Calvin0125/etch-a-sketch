@@ -17,10 +17,24 @@
             gridItem.addEventListener('mouseover', function(e){
                 e.target.style.background = 'blue';
             });
+        };
+        const pixels = gridContainer.scrollheight;
         const clearButton = document.querySelector('#clear');
-        clearButton.addEventListener('click', function() {
-                gridItem.style.background = 'white';
-        })
+        clearButton.addEventListener('click', newPad);
+        function newPad() {
+            const grid = document.querySelectorAll('.grid-item');
+            grid.forEach(square => gridContainer.removeChild(square));
+            let newWidth = prompt("Please enter a sketch-pad width, in pixels.");
+            let newSize = newWidth*newWidth;
+            gridContainer.style.gridTemplateColumns = `repeat(${newWidth}, 1fr)`;
+            for (let i = 0; i < newSize; i++) {
+                const gridItem = document.createElement('div');
+                gridItem.className = 'grid-item';
+                gridContainer.appendChild(gridItem);
+                gridItem.addEventListener('mouseover', function(e){
+                    e.target.style.background = 'blue';
+                });
+            };
         }
 
     </script>
